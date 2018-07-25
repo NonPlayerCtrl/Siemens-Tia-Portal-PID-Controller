@@ -2,7 +2,7 @@
 
 ## Probleme:
 Ich hatte immer viel mit Regeltechnik am Tia Portal zu tun und war einfach nie zufrieden mit den Siemens Bausteine. Ich brauche PI-Regler für Drucksteuerung und PID für Temperaturreglungen. Hier ein paar Punkte die mich störten:
-- Unterschiedliche Bausteine unter verschidenen CPUs (z.B.: 300 zu 1200)
+- Unterschiedliche Bausteine unter verschidenen CPUs
 - Nicht simulierbar
 - Nicht einsehbar und notfalls änderbar
 - Viel zu kompliziert mit hoher Einarbeitung
@@ -13,15 +13,16 @@ Ich hatte immer viel mit Regeltechnik am Tia Portal zu tun und war einfach nie z
 - Viele tausens Seiten Handbücher
 
 ## Arbeit:
-Nach längerem Suchen habe ich keine Alternative gefunden. Aber in OSCAT eine Inspiration, da es eigentlich ziemlich simpel ist, habe ich die Funktionen neu geschrieben. Jetzt habe ich alles schon länger im produktiven Einsatz und wollte mal schauen was Ihr dazu meint. 
+Nach längerem Suchen habe ich keine Alternative gefunden. Aber in OSCAT eine Inspiration, da es eigentlich ziemlich simpel ist, habe ich die Funktionen neu geschrieben. Ich habe es in TIA14 und 15 für die 1200 und 1500 CPU geschrieben. Jetzt habe ich alles schon länger im produktiven Einsatz und wollte mal schauen was Ihr dazu meint. 
 Meine Intention war nicht jeden glücklich zu machen, sondern etwas zurück zugeben. Ich habe dank offener Libs (OSCAT) viel gelernt und es währe nicht richtig, wenn ich jetzt für immer auf meinen Sourcen sitzen bleibe. 
 
 ## Portierung:
 Anmerkung zum Portieren auf Step-7, Codesys oder ähnlich:
 
     #VergangeneZeit := LREAL_TO_REAL(RUNTIME(#StaticZyklusZeit_Aux));
+    IF #VergangeneZeit > 0 AND #VergangeneZeit < 0.1 THEN
     
-Diese Zeile liefert die Zeit zwischen zwei Aufrufe in Sekunden zurück. Die Auflösung ist bis zur Nanosekunde genau. Bei Step-7 würde ich die Zeit als Parameter übergeben, bei Codesys kann eventuell TIME_TCK verwendet werden. 
+Die erste Zeile liefert die Zeit zwischen zwei Aufrufe in Sekunden zurück. Die Auflösung ist bis zur Nanosekunde genau. Die zweite prüft die Gültigkeit. Bei Step-7 würde ich die Zeit als Parameter übergeben, bei Codesys kann eventuell TIME_TCK verwendet werden. 
 Bei verwendung mit Tia-Portal auf 300 Steuerung, einfach diese Zeile löschen:
 
     { S7_Optimized_Access := 'TRUE' }
