@@ -20,7 +20,7 @@ Meine Intention war nicht jeden glücklich zu machen, sondern etwas zurück zuge
 Anmerkung zum Portieren auf Step-7, Codesys oder änlich:<br/>
 "#VergangeneZeit := LREAL_TO_REAL(RUNTIME(#StaticZyklusZeit_Aux));"<br/>
 Diese Zeile liefert die Zeit zwischen zwei Aufrufe in Sekunden zurück. Die Auflösung ist bis zur Nanosekunde genau. Bei Step-7 würde ich die Zeit als Parameter übergeben, bei Codesys kann eventuel TIME_TCK verwendet werden. 
-Bei verwendung mit Tia-Portal auf 300 Steuerung, einfach die Zeile <br/>"{ S7_Optimized_Access := 'TRUE' }"<br/> löschen.
+Bei verwendung mit Tia-Portal auf 300 Steuerung, einfach diese Zeile löschen:<br/>"{ S7_Optimized_Access := 'TRUE' }"<br/> 
 
 <b>Offene Arbeiten:</b>
 - Anleitung schreiben
