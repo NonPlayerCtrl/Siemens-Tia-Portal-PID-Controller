@@ -22,7 +22,7 @@ Anmerkung zum Portieren auf Step-7, Codesys oder änlich:
 Diese Zeile liefert die Zeit zwischen zwei Aufrufe in Sekunden zurück. Die Auflösung ist bis zur Nanosekunde genau. Bei Step-7 würde ich die Zeit als Parameter übergeben, bei Codesys kann eventuel TIME_TCK verwendet werden. 
 Bei verwendung mit Tia-Portal auf 300 Steuerung, einfach die Zeile "{ S7_Optimized_Access := 'TRUE' }" löschen.
 
-<b>Offene Arbeiten:</b><
+<b>Offene Arbeiten:</b>
 - Anleitung schreiben
 - Musterprojekte erstellen
 - Alles auf Englisch umstellen
