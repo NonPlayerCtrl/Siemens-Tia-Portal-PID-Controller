@@ -9,7 +9,7 @@ Ich hatte immer viel mit Regeltechnik in der SPS zu tun und war einfach nie zufr
     Viel zu kompliziert mit hoher einarbeitung
     Keine Portierbarkeit nach Codesys
     Zu hohe Integration in TIA
-    Viel Basteln und testen bis endlich etwas funktionierte
+    Viel basteln und testen bis endlich etwas funktionierte
     Zyklische OBs und Globale DB waren zwingend nötig 
 
 
