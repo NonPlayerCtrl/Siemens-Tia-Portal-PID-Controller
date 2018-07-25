@@ -26,6 +26,8 @@ Bei verwendung mit Tia-Portal auf 300 Steuerung, einfach diese Zeile löschen:
 
     { S7_Optimized_Access := 'TRUE' }
 
+Auf 300er kann eventuell mit "SFC64"(TIMETICK) gearbeitet werden. 
+
 ## Offene Arbeiten
 - Anleitung schreiben
 - Musterprojekte erstellen
