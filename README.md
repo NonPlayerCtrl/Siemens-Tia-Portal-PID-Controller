@@ -22,9 +22,14 @@ Anmerkung zum Portieren auf Step-7, Codesys oder änlich:
 Diese Zeile liefert die Zeit zwischen zwei Aufrufe in Sekunden zurück. Die Auflösung ist bis zur Nanosekunde genau. Bei Step-7 würde ich die Zeit als Parameter übergeben, bei Codesys kann eventuel TIME_TCK verwendet werden. 
 Bei verwendung mit Tia-Portal auf 300 Steuerung, einfach die Zeile "{ S7_Optimized_Access := 'TRUE' }" löschen.
 
+<b>Offene Arbeiten:</b><br/>
+- Anleitung schreiben
+- Musterprojekte erstellen
+- Alles auf Englisch umstellen
+- Fehlerbeseitigung
+- Portieren auf verschiedene Steuerungen
+
 <b>License:</b><br/>
 This project is released under the WTFPL LICENSE.
-
 <a href="http://www.wtfpl.net/"><img src="http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-4.png"
        width="80" height="15" alt="WTFPL" /></a>
-
