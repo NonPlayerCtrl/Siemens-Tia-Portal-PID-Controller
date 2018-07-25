@@ -1,0 +1,47 @@
+﻿FUNCTION_BLOCK "fb_PID-Regler_V15.0.2"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      ir_Istwert { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Real;   // Istwert
+      ir_Sollwert { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Real;   // Sollwert
+      ir_ProportionalVerstärkung { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Real := 20.0;   // Proportional-Verstärkung
+      ir_IntegralVerstärkung { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Real := 5.0;   // Integral-Verstärkung
+      ir_DifferenzialVerstärkung { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Real := 1.0;   // Differenzial-Verstärkung
+      itime_HaltezeitDifferezial { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Time;   // Differenzial-Haltezeit
+      ib_Reset { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool := FALSE;   // Reset
+   END_VAR
+
+   VAR_OUTPUT 
+      or_Reglerantwort { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Real;   // Regler Ausgang
+   END_VAR
+
+   VAR 
+      "idb_PI-Regler" { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : "fb_PI-Regler_V15.0.2";
+      "idb_D-Regler" { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : "fb_D-Regler_V15.0.1";
+      Reglerantwort_Integral { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Real;
+      Reglerantwort_Differenzial { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Real;
+   END_VAR
+
+   VAR CONSTANT 
+      UnteresLimit : Real := 0.0;   // unteres Limit
+      OberesLimit : Real := 100.0;   // oberes Limit
+   END_VAR
+
+
+BEGIN
+	#"idb_PI-Regler"(ir_Istwert := #ir_Istwert,
+	                 ir_Sollwert := #ir_Sollwert,
+	                 ir_ProportionalVerstärkung := #ir_ProportionalVerstärkung,
+	                 ir_IntegralVerstärkung := #ir_IntegralVerstärkung,
+	                 ib_Reset := #ib_Reset,
+	                 or_Reglerantwort => #Reglerantwort_Integral);
+	#"idb_D-Regler"(ir_SollstwertDiverenz:=#ir_Sollwert - #ir_Istwert,
+	                  ir_DifferenzialVerstärkung:=#ir_DifferenzialVerstärkung,
+	                  itime_HaltezeitDifferezia:=#itime_HaltezeitDifferezial,
+	                  ib_Reset:=#ib_Reset,
+	                  or_Reglerantwort=>#Reglerantwort_Differenzial);
+	#or_Reglerantwort := LIMIT(MN:= #UnteresLimit,
+	                           IN:=#Reglerantwort_Integral + #Reglerantwort_Differenzial,
+	                           MX:=#OberesLimit);
+END_FUNCTION_BLOCK
+
