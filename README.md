@@ -1,11 +1,11 @@
-# PID-Regler für Siemens SCL Tia-Portal<br/>
+# PID-Regler für Siemens SCL Tia-Portal
 
 <b>Probleme:</b><br/>
 Ich hatte immer viel mit Regeltechnik am Tia Portal zu tun und war einfach nie zufrieden mit den Siemens Bausteine. Ich brauche PI-Regler für Drucksteuerung und PID für Temperaturreglungen. Hier ein paar Punkte die mich störten:
 - Unterschiedliche Bausteine unter verschidenen CPUs (z.B.: 300 zu 1200)
 - Nicht simulierbar
 - Nicht einsehbar und notfalls änderbar
-- Viel zu kompliziert mit hoher einarbeitung
+- Viel zu kompliziert mit hoher Einarbeitung
 - Keine Portierbarkeit nach Codesys
 - Zu hohe Integration in TIA
 - Viel basteln und testen bis endlich etwas funktionierte
@@ -17,9 +17,9 @@ Nach längerem Suchen habe ich keine Alternative gefunden. Aber in OSCAT eine In
 Meine Intention war nicht jeden glücklich zu machen, sondern etwas zurück zugeben. Ich habe dank offener Libs (OSCAT) viel gelernt und es währe nicht richtig, wenn ich jetzt für immer auf meinen Sourcen sitzen bleibe. 
 
 <b>Portierung:</b><br/>
-Anmerkung zum Portieren auf Step-7, Codesys oder änlich:<br/>
+Anmerkung zum Portieren auf Step-7, Codesys oder ähnlich:<br/>
 "#VergangeneZeit := LREAL_TO_REAL(RUNTIME(#StaticZyklusZeit_Aux));"<br/>
-Diese Zeile liefert die Zeit zwischen zwei Aufrufe in Sekunden zurück. Die Auflösung ist bis zur Nanosekunde genau. Bei Step-7 würde ich die Zeit als Parameter übergeben, bei Codesys kann eventuel TIME_TCK verwendet werden. 
+Diese Zeile liefert die Zeit zwischen zwei Aufrufe in Sekunden zurück. Die Auflösung ist bis zur Nanosekunde genau. Bei Step-7 würde ich die Zeit als Parameter übergeben, bei Codesys kann eventuell TIME_TCK verwendet werden. 
 Bei verwendung mit Tia-Portal auf 300 Steuerung, einfach diese Zeile löschen:<br/>"{ S7_Optimized_Access := 'TRUE' }"<br/> 
 
 <b>Offene Arbeiten:</b>
