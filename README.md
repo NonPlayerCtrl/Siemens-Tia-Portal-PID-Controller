@@ -1,5 +1,5 @@
 # Siemens-SCL
-<h4>Siemens SCL Tia Portal Tia-Portal Source Code wie in OSCAT </h4><br/>
+<h6>Siemens SCL Tia Portal Tia-Portal Source Code wie in OSCAT </h6><br/>
 
 <b>Probleme:</b><br/>
 Ich hatte immer viel mit Regeltechnik am Tia Portal zu tun und war einfach nie zufrieden mit den Siemens Bausteine. Ich brauche PI-Regler für Drucksteuerung und PID für Temperaturreglungen. Hier ein paar Punkte die mich störten:
