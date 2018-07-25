@@ -14,7 +14,7 @@ Ich hatte immer viel mit Regeltechnik am Tia Portal zu tun und war einfach nie z
 
 <b>Arbeit:</b><br/>
 Nach längerem Suchen habe ich keine Alternative gefunden. Aber in OSCAT eine Inspiration, da es eigentlich ziemlich simpel ist, habe ich die Funktionen neu geschrieben. Jetzt habe ich alles schon länger im produktiven Einsatz und wollte mal schauen was Ihr dazu meint. 
-Meine Intention war nicht jeden glücklich zu machen, sondern etwas zurück zugeben. Ich habe dank offener Libs (OSCAT) viel gelernt und es währe nicht richtig, wenn ich jetzt für immer auf meinen Sourcen sitzen bleibe. Jeder darf mit meinem Regler machen was er will, oder auch nicht. Fall jemand Fehler findet oder es irgend wie noch besser hin bekommt, nur zu. 
+Meine Intention war nicht jeden glücklich zu machen, sondern etwas zurück zugeben. Ich habe dank offener Libs (OSCAT) viel gelernt und es währe nicht richtig, wenn ich jetzt für immer auf meinen Sourcen sitzen bleibe. 
 
 <b>Portierung:</b><br/>
 Anmerkung zum Portieren auf Step-7, Codesys oder änlich:
@@ -22,7 +22,7 @@ Anmerkung zum Portieren auf Step-7, Codesys oder änlich:
 Diese Zeile liefert die Zeit zwischen zwei Aufrufe in Sekunden zurück. Die Auflösung ist bis zur Nanosekunde genau. Bei Step-7 würde ich die Zeit als Parameter übergeben, bei Codesys kann eventuel TIME_TCK verwendet werden. 
 Bei verwendung mit Tia-Portal auf 300 Steuerung, einfach die Zeile "{ S7_Optimized_Access := 'TRUE' }" löschen.
 
-<b>Offene Arbeiten:</b><br/>
+<b>Offene Arbeiten:</b><
 - Anleitung schreiben
 - Musterprojekte erstellen
 - Alles auf Englisch umstellen
