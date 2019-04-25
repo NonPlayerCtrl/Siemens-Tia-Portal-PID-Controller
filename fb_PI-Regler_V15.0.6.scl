@@ -1,0 +1,61 @@
+﻿FUNCTION_BLOCK "fb_PI-Regler_V15.0.6"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      ir_Istwert { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Real;   // Istwert
+      ir_Sollwert { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Real;   // Sollwert
+      ir_ProportionalVerstärkung { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Real := 20.0;   // Proportional-Verstärkung
+      ir_IntegralVerstärkung { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Real := 5.0;   // Integral-Verstärkung
+      ib_Reset { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool := FALSE;   // Reset
+   END_VAR
+
+   VAR_OUTPUT 
+      or_Reglerantwort { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Real;   // Regler Ausgang
+   END_VAR
+
+   VAR 
+      StaticZyklusZeit_Aux { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : LReal;
+      Reglerantwort_Integral_AUX { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Real;
+      Reglerantwort_Integral { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Real;
+      Reglerantwort_Proportional { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Real;
+      VergangeneZeit { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Real;   // in s
+   END_VAR
+
+   VAR CONSTANT 
+      UnteresLimit : Real := 0.0;   // unteres Limit
+      OberesLimit : Real := 100.0;   // oberes Limit
+   END_VAR
+
+
+BEGIN
+	#VergangeneZeit := LREAL_TO_REAL(RUNTIME(#StaticZyklusZeit_Aux));
+	IF #ib_Reset THEN
+	    #Reglerantwort_Integral := 0.0;
+	    #or_Reglerantwort := 0.0;
+	ELSE
+	    #Reglerantwort_Proportional := #ir_ProportionalVerstärkung * (#ir_Sollwert - #ir_Istwert);
+	    IF #VergangeneZeit > 0 AND #VergangeneZeit < 0.1 THEN
+	        #Reglerantwort_Integral += #ir_IntegralVerstärkung * (#ir_Sollwert - #ir_Istwert) * #VergangeneZeit;
+	    END_IF;
+	    
+	    IF #Reglerantwort_Integral < #UnteresLimit THEN
+	        #Reglerantwort_Integral := #UnteresLimit;
+	    END_IF;
+	    IF #Reglerantwort_Integral > #OberesLimit THEN
+	        #Reglerantwort_Integral := #OberesLimit;
+	    END_IF;
+	    IF #Reglerantwort_Proportional + #Reglerantwort_Integral > #OberesLimit THEN
+	        #Reglerantwort_Integral := #OberesLimit - #Reglerantwort_Proportional;
+	    END_IF;
+	    IF #Reglerantwort_Integral > #OberesLimit THEN
+	        #Reglerantwort_Integral := #OberesLimit;
+	    END_IF;
+	    IF #Reglerantwort_Integral < #UnteresLimit THEN
+	        #Reglerantwort_Integral := #UnteresLimit;
+	    END_IF;
+	    #or_Reglerantwort := LIMIT(MN := #UnteresLimit,
+	                               IN := #Reglerantwort_Proportional + #Reglerantwort_Integral,
+	                               MX := #OberesLimit);
+	END_IF;
+END_FUNCTION_BLOCK
+
