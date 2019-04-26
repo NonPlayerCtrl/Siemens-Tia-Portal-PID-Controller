@@ -2,10 +2,10 @@
 
 ## Problem:
 I always had a lot to do with control technology at the Tia Portal and was simply never satisfied with the Siemens modules. I need PI controllers for pressure control and PID for temperature control. Here are a few points that bothered me:
-- Different devices among different CPUs
+- Different devices among different CPUs use deferent lib
 - Cannot be simulated
 - Not posible to read the source and change it
-- Much too complicated with a high level of familiarisation
+- Much to complicated with a high level of familiarisation
 - No portability to Codesys
 - Too high integration in TIA
 - Do a lot of tinkering and testing until finally something worked.
