@@ -18,10 +18,10 @@ My intention was not to make everyone happy, but to give something back. I learn
 
 ## Porting:
 Note on porting to Step-7, Codesys or similar:
-
+```
     #VergangeneZeit := LREAL_TO_REAL(RUNTIME(#StaticZyklusZeit_Aux));
     IF #VergangeneZeit > 0 AND #VergangeneZeit < 0.1 THEN
-    
+```    
 The first line returns the time between two calls in seconds. The resolution is accurate to the nanosecond. The second one checks the validity. With Step-7 I would pass the time as parameter, with Codesys TIME_TCK can be used. On 300 PLC it might be possible to work with "SFC64"(TIMETICK). 
 
 ## Open works
@@ -33,5 +33,4 @@ The first line returns the time between two calls in seconds. The resolution is 
 
 ## License:
 This project is released under the WTFPL LICENSE.
-<a href="http://www.wtfpl.net/"><img src="http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-4.png"
-       width="80" height="15" alt="WTFPL" /></a>
+<a href="http://www.wtfpl.net/"><img src="http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-4.png" width="80" height="15" alt="WTFPL" /></a>
