@@ -1,35 +1,35 @@
-# PID-Regler für Siemens SCL Tia-Portal
+# PID controller for Siemens SCL Tia-Portal
 
-## Probleme:
-Ich hatte immer viel mit Regeltechnik am Tia Portal zu tun und war einfach nie zufrieden mit den Siemens Bausteine. Ich brauche PI-Regler für Drucksteuerung und PID für Temperaturreglungen. Hier ein paar Punkte die mich störten:
-- Unterschiedliche Bausteine unter verschidenen CPUs
-- Nicht simulierbar
-- Nicht einsehbar und notfalls änderbar
-- Viel zu kompliziert mit hoher Einarbeitung
-- Keine Portierbarkeit nach Codesys
-- Zu hohe Integration in TIA
-- Viel basteln und testen bis endlich etwas funktionierte
-- Zyklische OBs und Globale DB waren zwingend nötig 
-- Viele tausens Seiten Handbücher
+## Problem:
+I always had a lot to do with control technology at the Tia Portal and was simply never satisfied with the Siemens modules. I need PI controllers for pressure control and PID for temperature control. Here are a few points that bothered me:
+- Different devices among different CPUs
+- Cannot be simulated
+- Not visible and can be changed if necessary
+- Much too complicated with a high level of familiarisation
+- No portability according to Codesys
+- Too high integration in TIA
+- Do a lot of tinkering and testing until finally something worked.
+- Cyclic OBs and Global DB were absolutely necessary 
+- Many thousands of pages of manuals
 
-## Arbeit:
-Nach längerem Suchen habe ich keine Alternative gefunden. Aber in OSCAT eine Inspiration, da es eigentlich ziemlich simpel ist, habe ich die Funktionen neu geschrieben. Ich habe es in TIA14 und 15 für die 1200 und 1500 CPU geschrieben. Jetzt habe ich alles schon länger im produktiven Einsatz und wollte mal schauen was Ihr dazu meint. 
-Meine Intention war nicht jeden glücklich zu machen, sondern etwas zurück zugeben. Ich habe dank offener Libs (OSCAT) viel gelernt und es währe nicht richtig, wenn ich jetzt für immer auf meinen Sourcen sitzen bleibe. 
+## Work:
+After a long search I did not find an alternative. But in OSCAT an inspiration, since it is actually quite simple, I rewrote the functions. I wrote it in TIA14 and 15 for the 1200 and 1500 CPU. Now I have everything in productive use and wanted to see what you think about it. 
+My intention was not to make everyone happy, but to give something back. I learned a lot thanks to open libs (OSCAT) and it wouldn't be right if I stayed on my sources forever. 
 
-## Portierung:
-Anmerkung zum Portieren auf Step-7, Codesys oder ähnlich:
+## Porting:
+Note on porting to Step-7, Codesys or similar:
 
     #VergangeneZeit := LREAL_TO_REAL(RUNTIME(#StaticZyklusZeit_Aux));
     IF #VergangeneZeit > 0 AND #VergangeneZeit < 0.1 THEN
     
-Die erste Zeile liefert die Zeit zwischen zwei Aufrufe in Sekunden zurück. Die Auflösung ist bis zur Nanosekunde genau. Die zweite prüft die Gültigkeit. Bei Step-7 würde ich die Zeit als Parameter übergeben, bei Codesys kann TIME_TCK verwendet werden. Auf 300er kann eventuell auch mit "SFC64"(TIMETICK) gearbeitet werden. 
+The first line returns the time between two calls in seconds. The resolution is accurate to the nanosecond. The second one checks the validity. With Step-7 I would pass the time as parameter, with Codesys TIME_TCK can be used. On 300 PLC it might be possible to work with "SFC64"(TIMETICK). 
 
-## Offene Arbeiten
-- Anleitung schreiben
-- Musterprojekte erstellen
-- Alles auf Englisch umstellen
-- Fehlerbeseitigung
-- Portieren auf verschiedene Steuerungen
+## Open works
+- Writing instructions
+- Create sample projects
+- Convert everything to English
+- debugging
+- Porting to different controls
 
 ## License:
 This project is released under the WTFPL LICENSE.
