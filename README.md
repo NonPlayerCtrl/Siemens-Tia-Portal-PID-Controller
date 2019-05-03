@@ -13,8 +13,7 @@ I always had a lot to do with control technology at the Tia Portal and was simpl
 - Many thousands of pages of manuals
 
 ## Work:
-After a long search I did not find an alternative. But in OSCAT an inspiration, since it is actually quite simple, I rewrote the functions. I wrote it in TIA14 and 15 for the 1200 and 1500 CPU. Now I have everything in productive use and wanted to see what you think about it. 
-My intention was not to make everyone happy, but to give something back. I learned a lot thanks to open libs (OSCAT) and it wouldn't be right if I don't share back.
+After a long search I did not find an alternative. But with OSCAT as an inspiration, since it is actually quite simple, I rewrote the functions. I wrote it in TIA14 and 15 for the 1200 and 1500 CPU. Now I have everything in productive use and wanted to see what you think about it. My intention was not to make everyone happy, but to give something back. I learned a lot thanks to open libs (OSCAT) and it wouldn't be right if I don't share back.
 
 ## Porting:
 Note on porting to Step-7, Codesys or similar:
