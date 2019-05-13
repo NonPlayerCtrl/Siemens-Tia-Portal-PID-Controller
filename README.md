@@ -17,10 +17,8 @@ After a long search I did not find an alternative. But with OSCAT as an inspirat
 
 ## Porting:
 Note on porting to Step-7, Codesys or similar:
-```
-#PastTime := LREAL_TO_REAL(RUNTIME(#StaticCycleTime_Aux));
-IF #PastTime > 0 AND #PastTime < 0.1 THEN
-```    
+```#PastTime := LREAL_TO_REAL(RUNTIME(#StaticCycleTime_Aux));
+IF #PastTime > 0 AND #PastTime < 0.1 THEN```    
 The first line returns the time between two calls in seconds. The resolution is accurate to the nanosecond. The second one checks the validity. With Step-7 I would pass the time as parameter, with Codesys TIME_TCK can be used. On 300 PLC it might be possible to work with "SFC64"(TIMETICK). 
 
 ## Open works
