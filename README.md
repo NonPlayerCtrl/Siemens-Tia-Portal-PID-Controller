@@ -29,6 +29,7 @@ The controller produce a outputs from 0 to 100. If used with a binary actor you 
 - or_Output = output value in % from 0 to 100
 
 ![PID Bild](https://github.com/OttoMeister/Siemens-Tia-Portal-PID-Controller/blob/master/PID-Control.png)
+![PID Bild](PID-Control.png)
 
 ## Porting:
 Note on porting to Step-7, Codesys or similar:
