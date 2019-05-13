@@ -28,7 +28,7 @@ The controller produce a outputs from 0 to 100. If used with a binary actor you 
 - ib_Reset = empty the integral and sets the output to zero
 - or_Output = output value in % from 0 to 100
 
-![PID Bild](Siemens-Tia-Portal-PID-Controller/PID-Control.png)
+![PID Bild](https://github.com/OttoMeister/Siemens-Tia-Portal-PID-Controller/blob/master/PID-Control.png)
 
 ## Porting:
 Note on porting to Step-7, Codesys or similar:
